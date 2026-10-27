@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
+// CẤU HÌNH GỐC: Ép toàn bộ ứng dụng gọi API tới Backend trên Render
+axios.defaults.baseURL = 'https://api-237411.onrender.com';
+
 function App() {
   const [employees, setEmployees] = useState([]);
   const [search, setSearch] = useState('');
@@ -13,6 +16,7 @@ function App() {
 
   const fetchEmployees = async () => {
     try {
+      // Chỉ cần gọi /api/..., axios sẽ tự động nối với baseURL ở trên
       const res = await axios.get(`/api/employees?search=${search}`);
       setEmployees(res.data);
     } catch (err) {
@@ -59,7 +63,6 @@ function App() {
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <h2>QUẢN LÝ NHÂN SỰ - TRẦN NGỌC TUẤN KHANG (237411)</h2>
       
-      {/* Form nhập liệu */}
       <form onSubmit={handleSubmit} style={{ background: '#f4f4f4', padding: '15px', marginBottom: '20px', borderRadius: '5px' }}>
         <h3>{editingId ? 'Sửa thông tin nhân viên' : 'Thêm nhân viên mới'}</h3>
         <input placeholder="Mã NV (VD: NV01)" value={form.employeeId} onChange={e => setForm({...form, employeeId: e.target.value})} required style={{marginRight: '10px', marginBottom: '10px'}} />
@@ -70,18 +73,16 @@ function App() {
         <input placeholder="Chức vụ" value={form.position} onChange={e => setForm({...form, position: e.target.value})} style={{marginRight: '10px', marginBottom: '10px'}} />
         <input placeholder="Trạng thái làm việc" value={form.status} onChange={e => setForm({...form, status: e.target.value})} style={{marginRight: '10px', marginBottom: '10px'}} />
         <br/>
-        <button type="submit" style={{ background: 'green', color: 'white', padding: '8px 15px', border: 'none', cursor: 'pointer' }}>
+        <button type="submit" style={{ background: 'green', color: 'white', padding: '8px 15px', border: 'none', cursor: 'pointer', marginTop: '10px' }}>
           {editingId ? 'Cập nhật' : 'Thêm mới'}
         </button>
-        {editingId && <button type="button" onClick={() => { setEditingId(null); setForm({employeeId: '', fullName: '', gender: 'Nam', dateOfBirth: '', department: '', position: '', email: '', phone: '', hireDate: '', status: 'Đang làm việc'}); }} style={{marginLeft: '10px', padding: '8px 15px'}}>Hủy</button>}
+        {editingId && <button type="button" onClick={() => { setEditingId(null); setForm({employeeId: '', fullName: '', gender: 'Nam', dateOfBirth: '', department: '', position: '', email: '', phone: '', hireDate: '', status: 'Đang làm việc'}); }} style={{marginLeft: '10px', padding: '8px 15px', marginTop: '10px'}}>Hủy</button>}
       </form>
 
-      {/* Ô tìm kiếm */}
       <div style={{ marginBottom: '20px' }}>
         <input placeholder="Tìm kiếm theo Mã hoặc Tên..." value={search} onChange={e => setSearch(e.target.value)} style={{ width: '300px', padding: '8px' }} />
       </div>
 
-      {/* Bảng dữ liệu */}
       <table border="1" cellPadding="10" style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr style={{ background: '#ddd' }}>
