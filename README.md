@@ -1,5 +1,4 @@
 Markdown
-# Hệ thống quản lý nhân sự trên nền tảng đám mây
 - Họ tên: Trần Ngọc Tuấn Khang
 - MSSV: 237411
 - Lớp: DH23tin10
