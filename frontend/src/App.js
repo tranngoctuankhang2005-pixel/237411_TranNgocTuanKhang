@@ -65,8 +65,10 @@ function App() {
         <input placeholder="Mã NV (VD: NV01)" value={form.employeeId} onChange={e => setForm({...form, employeeId: e.target.value})} required style={{marginRight: '10px', marginBottom: '10px'}} />
         <input placeholder="Họ tên" value={form.fullName} onChange={e => setForm({...form, fullName: e.target.value})} required style={{marginRight: '10px', marginBottom: '10px'}} />
         <input placeholder="Email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} required style={{marginRight: '10px', marginBottom: '10px'}} />
+        <input placeholder="Số điện thoại" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} style={{marginRight: '10px', marginBottom: '10px'}} />
         <input placeholder="Phòng ban" value={form.department} onChange={e => setForm({...form, department: e.target.value})} style={{marginRight: '10px', marginBottom: '10px'}} />
         <input placeholder="Chức vụ" value={form.position} onChange={e => setForm({...form, position: e.target.value})} style={{marginRight: '10px', marginBottom: '10px'}} />
+        <input placeholder="Trạng thái làm việc" value={form.status} onChange={e => setForm({...form, status: e.target.value})} style={{marginRight: '10px', marginBottom: '10px'}} />
         <br/>
         <button type="submit" style={{ background: 'green', color: 'white', padding: '8px 15px', border: 'none', cursor: 'pointer' }}>
           {editingId ? 'Cập nhật' : 'Thêm mới'}
@@ -86,8 +88,10 @@ function App() {
             <th>Mã NV</th>
             <th>Họ tên</th>
             <th>Email</th>
+            <th>Số điện thoại</th>
             <th>Phòng ban</th>
             <th>Chức vụ</th>
+            <th>Trạng thái</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -97,8 +101,10 @@ function App() {
               <td>{emp.employeeId}</td>
               <td>{emp.fullName}</td>
               <td>{emp.email}</td>
+              <td>{emp.phone}</td>
               <td>{emp.department}</td>
               <td>{emp.position}</td>
+              <td>{emp.status}</td>
               <td>
                 <button onClick={() => handleEdit(emp)} style={{ marginRight: '5px', background: 'orange', border: 'none', padding: '5px 10px', cursor: 'pointer' }}>Sửa</button>
                 <button onClick={() => handleDelete(emp._id)} style={{ background: 'red', color: 'white', border: 'none', padding: '5px 10px', cursor: 'pointer' }}>Xóa</button>
